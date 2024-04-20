@@ -32,8 +32,13 @@
 				removeItem(item){
 					const index = this.items.indexOf(item)
 					this.items.splice(index, 1)
+					localStorage.setItem('items', JSON.stringify(this.items))
 				}
 			},
+			// will run when instance first created
+			created(){
+				this.items = JSON.parse(localStorage.getItem('items')) || []
+			}
 		})
 	</script>
 </Body>
