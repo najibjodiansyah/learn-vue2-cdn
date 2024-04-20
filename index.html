@@ -7,6 +7,7 @@
 <Body>
 	<p>Hallo Saya Vue</p>
 	<div id="app">
+		<p v-if="items.length === 0">Items Empty</p>
 		<ul>
 			<li v-for="item in items">{{item}} <a href="#" v-on:click="removeItem(item)">remove</a></li>
 		</ul>
@@ -25,13 +26,14 @@
 			methods: {
 				addItem(){
 					this.items.push(this.item)
+					localStorage.setItem('items', JSON.stringify(this.items))
 					this.item = ''
 				},
 				removeItem(item){
 					const index = this.items.indexOf(item)
 					this.items.splice(index, 1)
 				}
-			}
+			},
 		})
 	</script>
 </Body>
