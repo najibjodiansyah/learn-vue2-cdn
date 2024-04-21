@@ -40,9 +40,14 @@
 					// this.item = ''
 				},
 				removeItem(item){
-					const index = this.items.indexOf(item)
-					this.items.splice(index, 1)
-					localStorage.setItem('items', JSON.stringify(this.items))
+					axios.delete('http://localhost:3000/items/' + item.id).then(response => {
+						console.log(response.data)
+						const index = this.items.indexOf(item)
+						this.items.splice(index, 1)
+					})
+					// const index = this.items.indexOf(item)
+					// this.items.splice(index, 1)
+					// localStorage.setItem('items', JSON.stringify(this.items))
 				}
 			},
 			// will run when instance first created
